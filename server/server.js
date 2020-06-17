@@ -1,4 +1,5 @@
 ﻿require('./config/config');
+const mongoose = require('mongoose');
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
@@ -43,6 +44,22 @@ app.post('/usuario', function(req, res) {
 app.delete('/usuario', function(req, res) {
     res.json('Delete Usuario')
 });
+
+mongoose.connect('mongodb://localhost:27017/cafe', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
+
+/*
+mongoose.connect('mongodb://localhost:27017/cafe', (err, res) => {
+    if (err) throw err;
+
+    console.log('Base de datos ONLINE')
+
+});
+
+*/
+
 
 app.listen(process.env.PORT, () => {
     console.log('Escucnhando el puerto', process.env.PORT);
